@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../FPGA-Servo-Control.srcs/sources_1/new/angle2pulse.vhd" \
+"../../../../FPGA-Servo-Control.srcs/sim_1/new/tb_angle2pulse.vhd" \
+
+# Do not sort compile order
+nosort
