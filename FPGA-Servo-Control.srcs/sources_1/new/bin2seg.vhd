@@ -71,7 +71,7 @@ begin
         when x"9" =>
         seg <= "0000100";
         when x"A" =>
-        seg <= "0011100";   --'°' sign instead of 'A'
+        seg <= "0011100";   --degree sign instead of 'A'
         when x"B" =>
         seg <= "1100000";
         when x"C" =>
