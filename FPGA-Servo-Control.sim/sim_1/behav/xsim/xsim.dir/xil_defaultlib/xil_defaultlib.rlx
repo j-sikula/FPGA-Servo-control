@@ -1,6 +1,8 @@
 0.7
 2020.2
-Nov 18 2020
-09:47:47
-C:/Users/246946/Documents/FPGA-Servo-control/FPGA-Servo-Control.srcs/sim_1/new/tb_angle2pulse.vhd,1712305243,vhdl,,,,cfg_tb_angle2pulse;tb_angle2pulse,,,,,,,,
-C:/Users/246946/Documents/FPGA-Servo-control/FPGA-Servo-Control.srcs/sources_1/new/angle2pulse.vhd,1712305046,vhdl,,,,angle2pulse,,,,,,,,
+Oct 13 2023
+20:47:58
+D:/UserData/Josef/Dokumenty/FPGA_projects/FPGA-Servo-control/FPGA-Servo-Control.srcs/sim_1/new/tb_angle2pulse.vhd,1712763379,vhdl,,,,cfg_tb_angle2pulse;tb_angle2pulse,,,,,,,,
+D:/UserData/Josef/Dokumenty/FPGA_projects/FPGA-Servo-control/FPGA-Servo-Control.srcs/sim_1/new/tb_bin2bcd.vhd,1712865089,vhdl,,,,cfg_tb_bin2bcd;tb_bin2bcd,,,,,,,,
+D:/UserData/Josef/Dokumenty/FPGA_projects/FPGA-Servo-control/FPGA-Servo-Control.srcs/sources_1/new/angle2pulse.vhd,1712763379,vhdl,,,,angle2pulse,,,,,,,,
+D:/UserData/Josef/Dokumenty/FPGA_projects/FPGA-Servo-control/FPGA-Servo-Control.srcs/sources_1/new/bin2bcd.vhd,1712865955,vhdl,,,,bin2bcd,,,,,,,,

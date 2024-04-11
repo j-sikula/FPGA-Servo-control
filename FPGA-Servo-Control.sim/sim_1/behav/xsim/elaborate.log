@@ -1,6 +1,7 @@
-Vivado Simulator 2020.2
-Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: C:/appz/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 2820f65bb7e94ba5b13fd97c01f1fb31 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot cfg_tb_angle2pulse_behav xil_defaultlib.cfg_tb_angle2pulse -log elaborate.log 
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot cfg_tb_bin2bcd_behav xil_defaultlib.cfg_tb_bin2bcd -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,6 +12,8 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavioral of entity xil_defaultlib.angle2pulse [angle2pulse_default]
-Compiling architecture tb of entity xil_defaultlib.tb_angle2pulse [tb_angle2pulse]
-Built simulation snapshot cfg_tb_angle2pulse_behav
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling architecture behavioral of entity xil_defaultlib.bin2bcd [bin2bcd_default]
+Compiling architecture tb of entity xil_defaultlib.tb_bin2bcd [tb_bin2bcd]
+Built simulation snapshot cfg_tb_bin2bcd_behav
