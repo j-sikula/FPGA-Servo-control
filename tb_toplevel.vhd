@@ -5,12 +5,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity tb_Top_level is
-end tb_Top_level;
+entity tb_top_level is
+end tb_top_level;
 
-architecture tb of tb_Top_level is
+architecture tb of tb_top_level is
 
-    component Top_level
+    component top_level
         port (CA        : out std_logic;
               CB        : out std_logic;
               CC        : out std_logic;
@@ -46,7 +46,7 @@ architecture tb of tb_Top_level is
 
 begin
 
-    dut : Top_level
+    dut : top_level
     port map (CA        => CA,
               CB        => CB,
               CC        => CC,
@@ -77,9 +77,11 @@ begin
         --  EDIT: Replace YOURRESETSIGNAL below by the name of your reset as I haven't guessed it
         
         wait for 100 ns;
+        
         SW <= b"00010111";       
         wait for 20 ms;
-
+        SW <= b"10110100";       
+        wait for 20 ms;
         -- EDIT Add stimuli here
         wait for 100 * TbPeriod;
 
@@ -92,7 +94,7 @@ end tb;
 
 -- Configuration block below is required by some simulators. Usually no need to edit.
 
-configuration cfg_tb_Top_level of tb_Top_level is
+configuration cfg_tb_top_level of tb_top_level is
     for tb
     end for;
-end cfg_tb_Top_level;
+end cfg_tb_top_level;

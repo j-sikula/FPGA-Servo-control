@@ -31,30 +31,31 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity Top_level is
-    Port ( CA : out STD_LOGIC;
-           CB : out STD_LOGIC;
-           CC : out STD_LOGIC;
-           CD : out STD_LOGIC;
-           CE : out STD_LOGIC;
-           CF : out STD_LOGIC;
-           CG : out STD_LOGIC;
-           DP : out STD_LOGIC;
-           SW : in STD_LOGIC_VECTOR (7 downto 0);
-           BTNC : in STD_LOGIC;
-           AN : out STD_LOGIC_VECTOR (7 downto 0);
-           CLK100MHZ : in STD_LOGIC;
-           JA : out STD_LOGIC);
-end Top_level;
+entity top_level is
+    port ( CA        : out STD_LOGIC;
+           CB        : out STD_LOGIC;
+           CC        : out STD_LOGIC;
+           CD        : out STD_LOGIC;
+           CE        : out STD_LOGIC;
+           CF        : out STD_LOGIC;
+           CG        : out STD_LOGIC;
+           DP        : out STD_LOGIC;
+           SW        : in  STD_LOGIC_VECTOR (7 downto 0);
+           BTNC      : in  STD_LOGIC;
+           AN        : out STD_LOGIC_VECTOR (7 downto 0);
+           CLK100MHZ : in  STD_LOGIC;
+           JA        : out STD_LOGIC
+    );
+end entity top_level;
 
-architecture Behavioral of Top_level is
-    component bin2PWM
-        
-        Port (  clk : in STD_LOGIC;
-            rst : in STD_LOGIC;
-            angle : in STD_LOGIC_VECTOR (7 downto 0);
-            pwm_out : out STD_LOGIC);
-            
+architecture Behavioral of top_level is
+    
+    component bin2PWM is
+        port (  clk     : in STD_LOGIC;
+                rst     : in STD_LOGIC;
+                angle   : in STD_LOGIC_VECTOR (7 downto 0);
+                pwm_out : out STD_LOGIC
+        );            
     end component;
 
 
@@ -64,11 +65,11 @@ architecture Behavioral of Top_level is
 begin
     B2PWM: bin2PWM
     port map(
-        clk=>CLK100MHZ,
-        rst=>BTNC,
-        angle=>SW,
-        pwm_out=>JA
-        );
+        clk     =>  CLK100MHZ,
+        rst     =>  BTNC,
+        angle   =>  SW,
+        pwm_out =>  JA
+   );
         
 
 
