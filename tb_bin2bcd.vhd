@@ -45,7 +45,7 @@ begin
         angle <= (others => '0');
 
         -- EDIT Add stimuli here
-        wait for 100 * TbPeriod;
+        wait for 10 * TbPeriod;
         angle <= b"11110011";
         wait for 100 * TbPeriod;
         

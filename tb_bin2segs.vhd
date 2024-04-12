@@ -24,7 +24,7 @@ architecture tb of tb_angle2segs is
     signal an    : std_logic_vector (7 downto 0);
     signal seg   : std_logic_vector (6 downto 0);
 
-    constant TbPeriod : time := 1000 ns; -- EDIT Put right period here
+    constant TbPeriod : time := 10 ns; -- EDIT Put right period here
     signal TbClock : std_logic := '0';
     signal TbSimEnded : std_logic := '0';
 
@@ -53,7 +53,13 @@ begin
         wait for 100 * TbPeriod;
         angle <= b"01111000";
         
-        wait for 10000 * TbPeriod;
+        wait for 20ms;
+        angle <= b"10110100";
+        
+        wait for 20ms;
+        angle <= b"0000_0101";
+        
+        wait for 20ms;
         -- Stop the clock and hence terminate the simulation
         TbSimEnded <= '1';
         wait;
