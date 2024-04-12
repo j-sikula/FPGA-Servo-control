@@ -1,0 +1,11 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+C:/Users/246936/Documents/counter/counter.srcs/sim_1/new/tb_clock_enable.vhd,1712305388,vhdl,,,,cfg_tb_clock_enable;tb_clock_enable,,,,,,,,
+C:/Users/246936/Documents/counter/counter.srcs/sources_1/new/clock_enable.vhd,1712305397,vhdl,,,,clock_enable,,,,,,,,
+C:/Users/246936/Downloads/angle2pulse.vhd,1712305548,vhdl,,,,angle2pulse,,,,,,,,
+E:/DE1_project/period-counter/period-counter.srcs/sim_1/new/tb_bin2PWM.vhd,1712907576,vhdl,,,,cfg_tb_bin2pwm;tb_bin2pwm,,,,,,,,
+E:/DE1_project/period-counter/period-counter.srcs/sim_1/new/tb_toplevel.vhd,1712912032,vhdl,,,,cfg_tb_top_level;tb_top_level,,,,,,,,
+E:/DE1_project/period-counter/period-counter.srcs/sources_1/new/Top_level.vhd,1712909224,vhdl,,,,top_level,,,,,,,,
+E:/DE1_project/period-counter/period-counter.srcs/sources_1/new/bin2PWM.vhd,1712909892,vhdl,,,,bin2pwm,,,,,,,,
