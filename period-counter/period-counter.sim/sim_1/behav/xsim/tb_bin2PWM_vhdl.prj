@@ -1,9 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"C:/Users/246936/Downloads/angle2pulse.vhd" \
-"../../../../period-counter.srcs/sources_1/new/bin2PWM.vhd" \
-"C:/Users/246936/Documents/counter/counter.srcs/sources_1/new/clock_enable.vhd" \
-"../../../../period-counter.srcs/sim_1/new/tb_bin2PWM.vhd" \
-
-# Do not sort compile order
-nosort

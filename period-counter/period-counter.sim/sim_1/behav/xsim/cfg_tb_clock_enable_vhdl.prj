@@ -1,7 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"C:/Users/246936/Documents/counter/counter.srcs/sources_1/new/clock_enable.vhd" \
-"C:/Users/246936/Documents/counter/counter.srcs/sim_1/new/tb_clock_enable.vhd" \
-
-# Do not sort compile order
-nosort
