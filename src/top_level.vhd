@@ -58,6 +58,15 @@ architecture Behavioral of top_level is
         );            
     end component;
 
+    component angle2segs is
+        port (  clk : in STD_LOGIC;
+                clear : in STD_LOGIC;
+                angle : in STD_LOGIC_VECTOR (7 downto 0);
+                an : out STD_LOGIC_VECTOR (7 downto 0);
+                seg : out STD_LOGIC_VECTOR (6 downto 0)
+        );            
+    end component;
+
 
 --ADD component bin2segs
 
@@ -69,6 +78,21 @@ begin
         rst     =>  BTNC,
         angle   =>  SW,
         pwm_out =>  JA
+   );
+
+   A2SEGS: angle2segs
+    port map(
+        clk     => CLK100MHZ,
+        clear   => BTNC,
+        angle   => SW,
+        an      => AN,
+        seg(6)  => CA,
+        seg(5)  => CB,
+        seg(4)  => CC,
+        seg(3)  => CD,
+        seg(2)  => CE,
+        seg(1)  => CF,
+        seg(0)  => CG
    );
         
 
