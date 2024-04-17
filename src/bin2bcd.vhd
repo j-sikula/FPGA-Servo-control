@@ -34,19 +34,19 @@ use ieee.std_logic_unsigned.all;
 --use UNISIM.VComponents.all;
 
 entity bin2bcd is
-    Port ( clk : in std_logic;
-           angle : in STD_LOGIC_VECTOR (7 downto 0);
-           bcd : out STD_LOGIC_VECTOR (11 downto 0);
+    Port ( clk                  : in  std_logic;
+           angle                : in  STD_LOGIC_VECTOR (7 downto 0);
+           bcd                  : out STD_LOGIC_VECTOR (11 downto 0);
            conversion_completed : out std_logic);
 end bin2bcd;
 
 architecture Behavioral of bin2bcd is
 
-signal sig_bcd : std_logic_vector (11 downto 0) := (others => '0');
-signal sig_angle : std_logic_vector (7 downto 0):= (others => '0');
-signal s_counter : integer range 0 to 7 := 0;
-signal s_last_shift : std_logic := '0';
-signal s_cc : std_logic := '1'; -- conversion_completed
+signal sig_bcd      : std_logic_vector (11 downto 0) := (others => '0');
+signal sig_angle    : std_logic_vector (7 downto 0)  := (others => '0');
+signal s_counter    : integer range 0 to 7           := 0;
+signal s_last_shift : std_logic                      := '0';
+signal s_cc         : std_logic                      := '1'; -- conversion_completed
 
 begin
 process(clk)
