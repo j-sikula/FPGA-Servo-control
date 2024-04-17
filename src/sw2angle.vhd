@@ -65,8 +65,10 @@ process(clk)
         if sw_up = sw_down then
             s_n_up_incremented <= 0;
             s_n_down_incremented <= 0;
-        elsif (s_counter_period > PERIOD - 1) then
             s_counter_period <= 0;
+        elsif (s_counter_period > PERIOD-1) then
+            s_counter_period <= 0;
+        elsif(s_counter_period = 0) then    
             if sw_up = '1' and sw_down = '0' then
             
                 s_n_down_incremented <= 0;
@@ -82,6 +84,7 @@ process(clk)
                     
                 else
                     s_angle <= 180;
+                    s_n_up_incremented <= 0;
                 end if;
                         
                 s_n_up_incremented <= s_n_up_incremented + 1;
@@ -97,18 +100,16 @@ process(clk)
                     s_angle <= s_angle - 10;
                 else
                     s_angle <= 0;
+                    s_n_down_incremented <= 0;
                 end if;
                             
                 s_n_down_incremented <= s_n_down_incremented + 1;
-                
-            else
-                s_n_down_incremented <= 0;
-                s_n_down_incremented <= 0;
+                           
             end if;
-        else
-            s_counter_period <= s_counter_period +1;
-        end if;
-            
+           s_counter_period <= 1;
+        else 
+           s_counter_period <= s_counter_period +1;                    
+        end if;           
     end if; 
    
 end process;
