@@ -95,7 +95,7 @@ begin
         seg(0)  => CG
    );
         
-
+   DP <= '1';
 
 
 end Behavioral;

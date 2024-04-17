@@ -35,7 +35,7 @@ use ieee.std_logic_unsigned.all;
 
 entity sw2angle is
     generic (
-      PERIOD : integer := 600_000
+      PERIOD : integer := 50_000   --after 500 ms increment : 50_000_000
     );
     Port ( clk      : in  std_logic;
            sw_up    : in  std_logic;
@@ -59,46 +59,60 @@ architecture Behavioral of sw2angle is
 
 begin
 process(clk)
-  begin
+    begin
   
-  if rising_edge(clk) then
-      if (sig_counter_period > PERIOD - 1) then
-        sig_counter_period <= 0;
-        if sw_up = '1' and sw_down = '0' then
-          s_n_down_incremented <= 0;
-          if s_n_up_incremented < 4 and s_angle < 180 then
-            s_angle <= s_angle + 1;
-          elsif s_n_up_incremented < 10 and s_angle < 175 then
-            s_angle <= s_angle + 5;
-          elsif s_n_up_incremented < 25 and s_angle < 170 then
-            s_angle <= s_angle + 10;
-          else
-            s_angle <= 180;
-          end if;
-            
-          
-          s_n_up_incremented <= s_n_up_incremented + 1;
-        elsif sw_up = '0' and sw_down = '1' then
+    if rising_edge(clk) then
+        if sw_up = sw_down then
             s_n_up_incremented <= 0;
-            if s_n_up_incremented < 4 and s_angle > 1 then
-              s_angle <= s_angle - 1;
-            elsif s_n_up_incremented < 10 and s_angle > 5 then
-              s_angle <= s_angle - 5;
-            elsif s_n_up_incremented < 25 and s_angle > 10 then
-              s_angle <= s_angle - 10;
-            else
-              s_angle <= 0;
-            end if;
-              
+            s_n_down_incremented <= 0;
+        elsif (s_counter_period > PERIOD - 1) then
+            s_counter_period <= 0;
+            if sw_up = '1' and sw_down = '0' then
             
-            s_n_down_incremented <= s_n_down_incremented + 1;
-          else
-            s_n_down_incremented <= 0;
-            s_n_down_incremented <= 0;
-      end if;
-    
-   end if; 
+                s_n_down_incremented <= 0;
+                
+                if s_n_up_incremented < 4 and s_angle < 180 then
+                    s_angle <= s_angle + 1;
+                    
+                elsif s_n_up_incremented < 10 and s_angle < 175 then
+                    s_angle <= s_angle + 5;
+                    
+                elsif s_n_up_incremented < 25 and s_angle < 170 then
+                    s_angle <= s_angle + 10;
+                    
+                else
+                    s_angle <= 180;
+                end if;
+                        
+                s_n_up_incremented <= s_n_up_incremented + 1;
+              
+            elsif sw_up = '0' and sw_down = '1' then
+                s_n_up_incremented <= 0;
+                
+                if s_n_down_incremented < 4 and s_angle > 1 then
+                    s_angle <= s_angle - 1;
+                elsif s_n_down_incremented < 10 and s_angle > 5 then
+                    s_angle <= s_angle - 5;
+                elsif s_n_down_incremented < 25 and s_angle > 10 then
+                    s_angle <= s_angle - 10;
+                else
+                    s_angle <= 0;
+                end if;
+                            
+                s_n_down_incremented <= s_n_down_incremented + 1;
+                
+            else
+                s_n_down_incremented <= 0;
+                s_n_down_incremented <= 0;
+            end if;
+        else
+            s_counter_period <= s_counter_period +1;
+        end if;
+            
+    end if; 
    
-  end process;
-angle <= sig_angle;
+end process;
+
+angle <= std_logic_vector(to_unsigned(s_angle, angle'length));
+
 end Behavioral;
