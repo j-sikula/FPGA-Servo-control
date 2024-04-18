@@ -71,7 +71,7 @@ begin
         angle(7) => angle(7),
         clk => clk);
         
-    clock_en: clock_enable
+    PeriodPulse: clock_enable
     port map(
         pulse => sig_period_pulse,
         clk => clk,

@@ -41,7 +41,10 @@ entity top_level is
            CG        : out STD_LOGIC;
            DP        : out STD_LOGIC;
            SW        : in  STD_LOGIC_VECTOR (7 downto 0);
+           SW_F      : in  STD_LOGIC;
            BTNC      : in  STD_LOGIC;
+           BTNU      : in  STD_LOGIC;
+           BTND      : in  STD_LOGIC;
            AN        : out STD_LOGIC_VECTOR (7 downto 0);
            CLK100MHZ : in  STD_LOGIC;
            JA        : out STD_LOGIC
@@ -59,16 +62,24 @@ architecture Behavioral of top_level is
     end component;
 
     component angle2segs is
-        port (  clk : in STD_LOGIC;
-                clear : in STD_LOGIC;
-                angle : in STD_LOGIC_VECTOR (7 downto 0);
-                an : out STD_LOGIC_VECTOR (7 downto 0);
-                seg : out STD_LOGIC_VECTOR (6 downto 0)
+        port (  clk     : in STD_LOGIC;
+                clear   : in STD_LOGIC;
+                angle   : in STD_LOGIC_VECTOR (7 downto 0);
+                an      : out STD_LOGIC_VECTOR (7 downto 0);
+                seg     : out STD_LOGIC_VECTOR (6 downto 0)
+        );            
+    end component;
+    
+    component sw2angle is
+        port (  clk      : in  std_logic;
+                sw_up    : in  std_logic;
+                sw_down  : in  std_logic;
+                angle    : out STD_LOGIC_VECTOR (7 downto 0)
         );            
     end component;
 
-
---ADD component bin2segs
+    signal s_angle_btn : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
+    signal s_angle : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
 
 
 begin
@@ -76,7 +87,7 @@ begin
     port map(
         clk     =>  CLK100MHZ,
         rst     =>  BTNC,
-        angle   =>  SW,
+        angle   =>  s_angle,
         pwm_out =>  JA
    );
 
@@ -84,7 +95,7 @@ begin
     port map(
         clk     => CLK100MHZ,
         clear   => BTNC,
-        angle   => SW,
+        angle   => s_angle,
         an      => AN,
         seg(6)  => CA,
         seg(5)  => CB,
@@ -94,8 +105,25 @@ begin
         seg(1)  => CF,
         seg(0)  => CG
    );
+   
+    S2ANGLE: sw2angle
+    port map(
+        clk     =>  CLK100MHZ,
+        sw_up   =>  BTNU,
+        sw_down =>  BTND,
+        angle   =>  s_angle_btn
+   );
         
    DP <= '1';
 
+   p_mode : process (SW_F) is
+    begin
+    if (SW_F = '0') then
+        s_angle <= s_angle_btn;
+    else
+        s_angle <= SW;
+    end if;
+    
+   end process;
 
 end Behavioral;
