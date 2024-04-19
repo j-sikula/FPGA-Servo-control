@@ -35,7 +35,7 @@ use ieee.std_logic_unsigned.all;
 
 entity sw2angle is
     generic (
-      PERIOD : integer := 50_000   --after 500 ms increment : 50_000_000
+      PERIOD : integer := 50_000_000   --after 500 ms increment : 50_000_000
     );
     Port ( clk      : in  std_logic;
            sw_up    : in  std_logic;

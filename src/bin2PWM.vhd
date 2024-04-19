@@ -78,15 +78,15 @@ begin
         clk => clk,
         rst => rst);
         
-    process(sig_period_pulse, sig_r_pulse)
+    process(clk)
     begin
-        if rising_edge(sig_period_pulse) then
-            sig_pwm_out <= '1';
+        if rising_edge(clk) then
+            if sig_period_pulse = '1' then
+                sig_pwm_out <= '1';
             end if;
-        if rising_edge(sig_r_pulse) then
-            sig_pwm_out <='0';
-        
-            
+            if sig_r_pulse = '1' then
+                sig_pwm_out <='0';
+            end if;           
         end if;
     end process;
         

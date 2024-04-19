@@ -78,6 +78,15 @@ architecture Behavioral of top_level is
         );            
     end component;
     
+    component debounce is
+        port (  clk : in STD_LOGIC;
+                rst : in STD_LOGIC;
+                en : in STD_LOGIC;
+                bouncey : in STD_LOGIC;
+                clean : out STD_LOGIC
+        );            
+    end component;
+    
     component sw2angle is
         port (  clk      : in  std_logic;
                 sw_up    : in  std_logic;
@@ -88,6 +97,8 @@ architecture Behavioral of top_level is
 
     signal s_angle_btn : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
     signal s_angle : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
+    signal s_deb_up : std_logic := '0';
+    signal s_deb_down : std_logic := '0'; 
 
 
 begin
@@ -122,11 +133,29 @@ begin
         seg(0)  => CG
    );
    
+   DEBOUNCER_UP: debounce
+    port map(
+        clk     =>  CLK100MHZ,
+        rst   =>  BTNC,
+        en =>  '1',
+        bouncey   =>  BTNU,
+        clean => s_deb_up
+   );
+   
+    DEBOUNCER_DOWN: debounce
+    port map(
+        clk     =>  CLK100MHZ,
+        rst   =>  BTNC,
+        en =>  '1',
+        bouncey   =>  BTND,
+        clean => s_deb_down
+   );
+   
     S2ANGLE: sw2angle
     port map(
         clk     =>  CLK100MHZ,
-        sw_up   =>  BTNU,
-        sw_down =>  BTND,
+        sw_up   =>  s_deb_up,
+        sw_down =>  s_deb_down,
         angle   =>  s_angle_btn
    );
         

@@ -36,9 +36,7 @@ entity debounce is
            rst : in STD_LOGIC;
            en : in STD_LOGIC;
            bouncey : in STD_LOGIC;
-           clean : out STD_LOGIC;
-           pos_edge : out STD_LOGIC;
-           neg_edge : out STD_LOGIC);
+           clean : out STD_LOGIC);
 end debounce;
 
 architecture Behavioral of debounce is
@@ -55,7 +53,7 @@ architecture Behavioral of debounce is
     -- Debounced signal
     signal sig_clean : std_logic;
     
-    signal sig_delayed : std_logic;
+   
 begin
 -- Process implementing a finite state machine (FSM) for
     -- button debouncing. Handles transitions between different
@@ -132,20 +130,7 @@ begin
     -- Assign output debounced signal
     clean <= sig_clean;
     
-    p_edge_detector : process (clk) is
-    begin
-        if rising_edge(clk) then
-            if (rst = '1') then
-                sig_delayed <= '0';
-            else
-                sig_delayed <= sig_clean;
-            end if;
-        end if;
-    end process p_edge_detector;
-    
-    
-    pos_edge <= sig_clean and not sig_delayed;
-    neg_edge <= not sig_clean and  sig_delayed;
+  
     
 
 end Behavioral;

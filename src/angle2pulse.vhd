@@ -40,8 +40,8 @@ entity angle2pulse is
 end angle2pulse;
 
 architecture Behavioral of angle2pulse is
-signal count : integer;
-signal counter_angle : integer;
+signal count : integer :=0;
+signal counter_angle : integer :=0;
 
 begin
 
