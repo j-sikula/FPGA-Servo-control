@@ -50,7 +50,7 @@ architecture Behavioral of angle2segs is
  
   component clock_enable is
     generic (
-        PERIOD : integer := 2_000_000
+        PERIOD : integer := 200_000
     );
     Port ( clk : in STD_LOGIC;
             rst : in STD_LOGIC;

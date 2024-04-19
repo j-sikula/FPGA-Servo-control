@@ -56,6 +56,7 @@ architecture Behavioral of bin2PWM is
     end component;
     signal sig_r_pulse: std_logic;
     signal sig_period_pulse: std_logic;
+    signal sig_pwm_out: std_logic := '0';
 begin
     A2Pulse: angle2pulse
     port map( 
@@ -80,15 +81,15 @@ begin
     process(sig_period_pulse, sig_r_pulse)
     begin
         if rising_edge(sig_period_pulse) then
-            pwm_out <= '1';
+            sig_pwm_out <= '1';
             end if;
         if rising_edge(sig_r_pulse) then
-            pwm_out <='0';
+            sig_pwm_out <='0';
         
             
         end if;
     end process;
         
-            
+    pwm_out <= sig_pwm_out;        
 
 end Behavioral;

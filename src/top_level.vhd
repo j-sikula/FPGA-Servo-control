@@ -47,7 +47,8 @@ entity top_level is
            BTND      : in  STD_LOGIC;
            AN        : out STD_LOGIC_VECTOR (7 downto 0);
            CLK100MHZ : in  STD_LOGIC;
-           JA        : out STD_LOGIC
+           JA_out        : out STD_LOGIC;
+           JB_out        : out STD_LOGIC
     );
 end entity top_level;
 
@@ -59,6 +60,13 @@ architecture Behavioral of top_level is
                 angle   : in STD_LOGIC_VECTOR (7 downto 0);
                 pwm_out : out STD_LOGIC
         );            
+    end component;
+    
+    component angle2pulse is
+    Port ( clk : in STD_LOGIC;
+           rst : in STD_LOGIC;
+           angle : in STD_LOGIC_VECTOR (7 downto 0);
+           pulse : out STD_LOGIC);
     end component;
 
     component angle2segs is
@@ -88,7 +96,15 @@ begin
         clk     =>  CLK100MHZ,
         rst     =>  BTNC,
         angle   =>  s_angle,
-        pwm_out =>  JA
+        pwm_out =>  JA_out
+   );
+   
+   A2P: angle2pulse
+    port map(
+        clk     =>  CLK100MHZ,
+        rst     =>  BTNC,
+        angle   =>  s_angle,
+        pulse =>  JB_out
    );
 
    A2SEGS: angle2segs
@@ -115,8 +131,8 @@ begin
    );
         
    DP <= '1';
-
-   p_mode : process (SW_F) is
+   
+   p_mode : process (CLK100MHZ) is
     begin
     if (SW_F = '0') then
         s_angle <= s_angle_btn;

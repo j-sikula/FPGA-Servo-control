@@ -20,10 +20,14 @@ architecture tb of tb_top_level is
               CG        : out std_logic;
               DP        : out std_logic;
               SW        : in std_logic_vector (7 downto 0);
+              SW_F      : in  STD_LOGIC;
               BTNC      : in std_logic;
+              BTNU      : in  STD_LOGIC;
+              BTND      : in  STD_LOGIC;
               AN        : out std_logic_vector (7 downto 0);
               CLK100MHZ : in std_logic;
-              JA        : out std_logic);
+              JA_out        : out std_logic;
+              JB_out        : out std_logic);
     end component;
 
     signal CA        : std_logic;
@@ -35,10 +39,14 @@ architecture tb of tb_top_level is
     signal CG        : std_logic;
     signal DP        : std_logic;
     signal SW        : std_logic_vector (7 downto 0);
+    signal SW_F      : STD_LOGIC;
     signal BTNC      : std_logic;
+    signal BTNU      : STD_LOGIC;
+    signal BTND      : STD_LOGIC;
     signal AN        : std_logic_vector (7 downto 0);
     signal CLK100MHZ : std_logic;
-    signal JA        : std_logic;
+    signal JA_out        : std_logic;
+    signal JB_out        : std_logic;
 
     constant TbPeriod : time := 10 ns; -- EDIT Put right period here
     signal TbClock : std_logic := '0';
@@ -56,10 +64,14 @@ begin
               CG        => CG,
               DP        => DP,
               SW        => SW,
+              SW_F      => SW_F,
               BTNC      => BTNC,
+              BTND      => BTND,
+              BTNU      => BTNU,
               AN        => AN,
               CLK100MHZ => CLK100MHZ,
-              JA        => JA);
+              JA_out        => JA_out,
+              JB_out        => JB_out);
 
     -- Clock generation
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
@@ -72,11 +84,15 @@ begin
         -- EDIT Adapt initialization as needed
         SW <= (others => '0');
         BTNC <= '0';
+        SW_F <= '0';
+        BTNU <= '0';
+        BTND <= '0';
 
         -- Reset generation
         --  EDIT: Replace YOURRESETSIGNAL below by the name of your reset as I haven't guessed it
         
         wait for 100 ns;
+        SW_F <= '1';
         
         SW <= b"00010111";       
         wait for 20 ms;
