@@ -47,9 +47,10 @@ begin
 
 p_angle_2_pulse : process (clk) is
     begin
-        counter_angle <= 555*TO_INTEGER(unsigned(angle)) + 100_000;
+       
         -- Synchronous proces
-        if (rising_edge(clk)) then
+        if (rising_edge(clk)) then 
+            counter_angle <= 555*TO_INTEGER(unsigned(angle)) + 100_000;
             if rst = '1' then
                 count <= 0;
                 pulse <= '0';
