@@ -55,22 +55,21 @@ architecture Behavioral of sw2angle is
             pulse : out STD_LOGIC);
   end component;
   
-  signal sig_angle : std_logic_vector (7 downto 0):= (others => '0');
   signal s_angle : integer range 0 to 180 := 0;
   signal s_period : std_logic := '0';
-  signal s_increment : integer range 0 to 20 := 0;  
+  signal s_rst_clk_en : std_logic := '0';
   signal s_n_up_incremented : integer range 0 to 180 := 0;
   signal s_n_down_incremented : integer range 0 to 180 := 0;    
-  signal s_is_incrementing : std_logic := '0';
+
   
-  signal s_cc : std_logic := '1'; -- conversion_completed
+ 
 
 begin
 
 pulse_generator : clock_enable
   port map (
     clk  => clk,
-    rst    => '0',
+    rst    => s_rst_clk_en,
     pulse    => s_period
   );
   
@@ -79,15 +78,25 @@ process(clk)
     begin
   
     if rising_edge(clk) then
-    
+        if s_rst_clk_en = '1' then
+            s_rst_clk_en <= '0';
+        end if;
+        
         if (sw_up = '1' and sw_down = '1') or (sw_up = '0' and sw_down = '0') then
             s_n_up_incremented <= 0;
             s_n_down_incremented <= 0;
         end if; 
         
-     
-        if s_period = '1' and sw_up = '1' and sw_down = '0' then    --incrementing up when hold btn_up
+        if s_n_up_incremented = 0 and sw_up = '1' and sw_down = '0' then    --incrementing up when pressed btn_up
+            s_rst_clk_en <= '1';
+            if s_angle + 1 < 180 then
+                s_angle <= s_angle + 1;
+            end if;
+            s_n_up_incremented <= 1;
+        end if;
         
+        if s_period = '1' and sw_up = '1' and sw_down = '0' then    --incrementing up when hold btn_up
+            
             s_n_down_incremented <= 0;
             
             if s_n_up_incremented + s_angle + 1 < 180 then
@@ -99,8 +108,17 @@ process(clk)
                     
             s_n_up_incremented <= s_n_up_incremented + 1;
         end if;
+        
+        if s_n_down_incremented = 0 and sw_up = '0' and sw_down = '1' then    --incrementing up when pressed btn_down
+            s_rst_clk_en <= '1';
+            if s_angle - 1 > 0 then
+                s_angle <= s_angle - 1;
+            end if;
+            s_n_down_incremented <= 1;    
+        end if;
           
         if s_period = '1' and sw_up = '0' and sw_down = '1' then    --incrementing down when hold btn_down
+            
             s_n_up_incremented <= 0;
             
             if s_angle - s_n_down_incremented > 0 then
