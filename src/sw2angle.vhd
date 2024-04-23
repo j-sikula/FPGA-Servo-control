@@ -35,7 +35,8 @@ use ieee.std_logic_unsigned.all;
 
 entity sw2angle is
     generic (
-      PERIOD : integer := 50_000   --after 500 ms increment : 50_000_000
+      PERIOD : integer := 20_000_000;   --after 500 ms increment : 50_000_000
+      MAX_ANGLE : integer := 90
     );
     Port ( clk      : in  std_logic;
            sw_up    : in  std_logic;
@@ -48,18 +49,18 @@ architecture Behavioral of sw2angle is
 
   component clock_enable is
     generic (
-        PERIOD : integer := PERIOD
+        PERIOD : integer := PERIOD        
     );
     Port ( clk : in STD_LOGIC;
             rst : in STD_LOGIC;
             pulse : out STD_LOGIC);
   end component;
   
-  signal s_angle : integer range 0 to 180 := 0;
+  signal s_angle : integer range 0 to MAX_ANGLE := 0;
   signal s_period : std_logic := '0';
   signal s_rst_clk_en : std_logic := '0';
-  signal s_n_up_incremented : integer range 0 to 180 := 0;
-  signal s_n_down_incremented : integer range 0 to 180 := 0;    
+  signal s_n_up_incremented : integer range 0 to MAX_ANGLE := 0;
+  signal s_n_down_incremented : integer range 0 to MAX_ANGLE := 0;    
 
   
  
@@ -89,7 +90,7 @@ process(clk)
         
         if s_n_up_incremented = 0 and sw_up = '1' and sw_down = '0' then    --incrementing up when pressed btn_up
             s_rst_clk_en <= '1';
-            if s_angle + 1 < 180 then
+            if s_angle + 1 < MAX_ANGLE then
                 s_angle <= s_angle + 1;
             end if;
             s_n_up_incremented <= 1;
@@ -99,10 +100,10 @@ process(clk)
             
             s_n_down_incremented <= 0;
             
-            if s_n_up_incremented + s_angle + 1 < 180 then
+            if s_n_up_incremented + s_angle + 1 < MAX_ANGLE then
                 s_angle <= s_n_up_incremented + s_angle + 1;                      
             else
-                s_angle <= 180;
+                s_angle <= MAX_ANGLE;
                 s_n_up_incremented <= 0;
             end if;
                     
