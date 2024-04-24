@@ -45,10 +45,13 @@ entity top_level is
            BTNC      : in  STD_LOGIC;
            BTNU      : in  STD_LOGIC;
            BTND      : in  STD_LOGIC;
+           BTNL      : in  STD_LOGIC;
+           BTNR      : in  STD_LOGIC;
            AN        : out STD_LOGIC_VECTOR (7 downto 0);
            CLK100MHZ : in  STD_LOGIC;
-           JA_out        : out STD_LOGIC;
-           JB_out        : out STD_LOGIC
+           JA_out    : out STD_LOGIC;
+           JB_out    : out STD_LOGIC;
+           JC_out    : out STD_LOGIC
     );
 end entity top_level;
 
@@ -61,7 +64,7 @@ architecture Behavioral of top_level is
                 pwm_out : out STD_LOGIC
         );            
     end component;
-    
+
     component angle2pulse is
     Port ( clk : in STD_LOGIC;
            rst : in STD_LOGIC;
@@ -97,8 +100,11 @@ architecture Behavioral of top_level is
 
     signal s_angle_btn : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
     signal s_angle : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
+    signal s_angle_2 : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
     signal s_deb_up : std_logic := '0';
-    signal s_deb_down : std_logic := '0'; 
+    signal s_deb_down : std_logic := '0';
+    signal s_deb_left : std_logic := '0';
+    signal s_deb_right : std_logic := '0'; 
 
 
 begin
@@ -110,6 +116,14 @@ begin
         pwm_out =>  JA_out
    );
    
+    B2PWM_2: bin2PWM
+    port map(
+        clk     =>  CLK100MHZ,
+        rst     =>  BTNC,
+        angle   =>  s_angle_2,
+        pwm_out =>  JC_out
+   );
+
    A2P: angle2pulse
     port map(
         clk     =>  CLK100MHZ,
@@ -132,7 +146,7 @@ begin
         seg(1)  => CF,
         seg(0)  => CG
    );
-   
+
    DEBOUNCER_UP: debounce
     port map(
         clk     =>  CLK100MHZ,
@@ -149,8 +163,25 @@ begin
         en =>  '1',
         bouncey   =>  BTND,
         clean => s_deb_down
+    );
+
+    DEBOUNCER_LEFT: debounce
+    port map(
+        clk     =>  CLK100MHZ,
+        rst   =>  BTNC,
+        en =>  '1',
+        bouncey   =>  BTNL,
+        clean => s_deb_left
+    );
+
+    DEBOUNCER_RIGHT: debounce
+    port map(
+        clk     =>  CLK100MHZ,
+        rst   =>  BTNC,
+        en =>  '1',
+        bouncey   =>  BTNR,
+        clean => s_deb_right
    );
-   
     S2ANGLE: sw2angle
     port map(
         clk     =>  CLK100MHZ,
@@ -158,7 +189,15 @@ begin
         sw_down =>  s_deb_down,
         angle   =>  s_angle_btn
    );
-        
+
+    S2ANGLE_2: sw2angle
+    port map(
+        clk     =>  CLK100MHZ,
+        sw_left   =>  s_deb_left,
+        sw_right =>  s_deb_right,
+        angle   =>  s_angle_2
+   );
+
    DP <= '1';
    
    p_mode : process (CLK100MHZ) is
