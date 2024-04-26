@@ -11,6 +11,10 @@ end tb_sw2angle;
 architecture tb of tb_sw2angle is
 
     component sw2angle
+        generic (
+          PERIOD : integer := 60_000;   -- after 500 ms increment : 50_000_000
+          MAX_ANGLE : integer := 90
+        );
         port (clk     : in std_logic;
               sw_up   : in std_logic;
               sw_down : in std_logic;

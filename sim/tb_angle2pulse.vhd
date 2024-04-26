@@ -51,7 +51,7 @@ begin
         wait for 100 ns;
         rst <= '0';
         wait for 100 ns;
-        angle <= b"1011_0000";
+        angle <= b"0010_1101";
 
         -- EDIT Add stimuli here
         wait for 400_000 * TbPeriod;

@@ -24,10 +24,12 @@ architecture tb of tb_top_level is
               BTNC      : in std_logic;
               BTNU      : in  STD_LOGIC;
               BTND      : in  STD_LOGIC;
+              BTNL      : in  STD_LOGIC;
+              BTNR      : in  STD_LOGIC;
               AN        : out std_logic_vector (7 downto 0);
               CLK100MHZ : in std_logic;
               JA_out        : out std_logic;
-              JB_out        : out std_logic);
+              JC_out        : out std_logic);
     end component;
 
     signal CA        : std_logic;
@@ -43,10 +45,12 @@ architecture tb of tb_top_level is
     signal BTNC      : std_logic;
     signal BTNU      : STD_LOGIC;
     signal BTND      : STD_LOGIC;
+    signal BTNL      : STD_LOGIC;
+    signal BTNR      : STD_LOGIC;
     signal AN        : std_logic_vector (7 downto 0);
     signal CLK100MHZ : std_logic;
     signal JA_out        : std_logic;
-    signal JB_out        : std_logic;
+    signal JC_out        : std_logic;
 
     constant TbPeriod : time := 10 ns; -- EDIT Put right period here
     signal TbClock : std_logic := '0';
@@ -68,10 +72,12 @@ begin
               BTNC      => BTNC,
               BTND      => BTND,
               BTNU      => BTNU,
+              BTNL      => BTNL,
+              BTNR      => BTNR,
               AN        => AN,
               CLK100MHZ => CLK100MHZ,
               JA_out        => JA_out,
-              JB_out        => JB_out);
+              JC_out        => JC_out);
 
     -- Clock generation
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
@@ -87,6 +93,8 @@ begin
         SW_F <= '0';
         BTNU <= '0';
         BTND <= '0';
+        BTNL <= '0';
+        BTNR <= '0';
 
         -- Reset generation
         --  EDIT: Replace YOURRESETSIGNAL below by the name of your reset as I haven't guessed it
