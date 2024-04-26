@@ -18,4 +18,4 @@ Board creates PWM signal that turns the motor. Binary code from the switches, or
 On FPGA board there are BTNR and BTNL buttons used for controlling first servo, and BTNU and BTND buttons controls second servo. When SW15 is "on" buttons BTNU and BTND are deactivated and motors are controlled with swiches SW0-SW7. 
 Button BTNC is used as reset button for reseting segment of 7-segment display.
 For connecting board and servos, Pmod ports of the board marked as JA are used. First servo is connected to Pin 1, and second servo to Pin 3. 
-![Pinout](/main/Pmod_pinout.png)
+![Pinout](/Pmod_pinout.png)
