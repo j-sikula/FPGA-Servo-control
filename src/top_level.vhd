@@ -76,6 +76,7 @@ architecture Behavioral of top_level is
         port (  clk     : in STD_LOGIC;
                 clear   : in STD_LOGIC;
                 angle   : in STD_LOGIC_VECTOR (7 downto 0);
+                angle_2 : in STD_LOGIC_VECTOR (7 downto 0);
                 an      : out STD_LOGIC_VECTOR (7 downto 0);
                 seg     : out STD_LOGIC_VECTOR (6 downto 0)
         );            
@@ -129,7 +130,7 @@ begin
         clk     =>  CLK100MHZ,
         rst     =>  BTNC,
         angle   =>  s_angle,
-        pulse =>  JB_out
+        pulse   =>  JB_out
    );
 
    A2SEGS: angle2segs
@@ -137,6 +138,7 @@ begin
         clk     => CLK100MHZ,
         clear   => BTNC,
         angle   => s_angle,
+        angle_2 => s_angle_2,
         an      => AN,
         seg(6)  => CA,
         seg(5)  => CB,
@@ -193,8 +195,8 @@ begin
     S2ANGLE_2: sw2angle
     port map(
         clk     =>  CLK100MHZ,
-        sw_left   =>  s_deb_left,
-        sw_right =>  s_deb_right,
+        sw_down   =>  s_deb_left,
+        sw_up =>  s_deb_right,
         angle   =>  s_angle_2
    );
 
