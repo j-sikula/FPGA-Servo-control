@@ -54,7 +54,7 @@ begin
         angle <= b"0000_0000";
         wait for 600_000 * TbPeriod;
         angle <= b"1011_0100";
-        wait for 20ms;
+        wait for 22ms;
         angle <= b"0000_0000";
         wait for 20ms;
         angle <= b"0101_1010";           
