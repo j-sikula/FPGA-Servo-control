@@ -14,6 +14,7 @@ architecture tb of tb_angle2segs is
         port (clk   : in std_logic;
               clear : in std_logic;
               angle : in std_logic_vector (7 downto 0);
+              angle_2 : in std_logic_vector (7 downto 0);
               an    : out std_logic_vector (7 downto 0);
               seg   : out std_logic_vector (6 downto 0));
     end component;
@@ -21,6 +22,7 @@ architecture tb of tb_angle2segs is
     signal clk   : std_logic;
     signal clear : std_logic;
     signal angle : std_logic_vector (7 downto 0);
+    signal angle_2 : std_logic_vector (7 downto 0);
     signal an    : std_logic_vector (7 downto 0);
     signal seg   : std_logic_vector (6 downto 0);
 
@@ -34,6 +36,7 @@ begin
     port map (clk   => clk,
               clear => clear,
               angle => angle,
+              angle_2 => angle_2,
               an    => an,
               seg   => seg);
 
@@ -48,6 +51,7 @@ begin
         -- EDIT Adapt initialization as needed
         clear <= '0';
         angle <= (others => '0');
+        angle_2 <= (others => '0');
 
         -- EDIT Add stimuli here
         wait for 100 * TbPeriod;
