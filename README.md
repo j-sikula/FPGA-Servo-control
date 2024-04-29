@@ -55,6 +55,6 @@ Our video link [here](https://www.youtube.com/)
 
 3. Bertrand Gros [Online VHDL Testbench template generator](https://vhdl.lapinoo.net/testbench/)
 
-4. Blog WOKWI [Learn ti Control Servo using PWM](https://blog.wokwi.com/learn-servo-motor-using-wokwi-logic-analyzer/)
+4. Blog WOKWI [Learn to Control Servo using PWM](https://blog.wokwi.com/learn-servo-motor-using-wokwi-logic-analyzer/)
 
 5. [Markdown Guide](https://www.markdownguide.org/basic-syntax/#code)
