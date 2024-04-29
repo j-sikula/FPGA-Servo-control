@@ -32,9 +32,9 @@ For connecting board and servos, Pmod ports of the board marked as JA are used. 
 ![sim A2P](/images/sim_angle2pulse.png)
 ### bin2PWM
 [Component bin2PWM](src/bin2PWM.vhd) create PWM signal. Value of the angle is coded in lenght of positive impulse of PWM signal. Period of PWM signal is 6ms. 
-![sim B2PWM](/images/sim_bin2pwm.png)
+![sim B2PWM](/images/sim_bin2pwm.jpg)
 When period pulse is HIGH, resets angle2pulse component and sets pwm_out to HIGH, angle2pulse's pulse sets pwm_out to LOW
-![B2PWM schematic](/images/bin2PWM_scheme.png)
+![B2PWM schematic](/images/bin2PWM_scheme.jpg)
 ### sw2angle
 [Component sw2angle](src/sw2angle.vhd) create binary code of the angle from two inputs representing two buttons - up and down. When button hold, incrementing every period 1 degree more. When released and pushed again, stars incrementing from 2.
 ![sim SW2A](/images/sim_sw2angle.png)
