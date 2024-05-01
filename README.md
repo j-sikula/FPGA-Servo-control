@@ -2,7 +2,7 @@
 Team project of controlling servo motor with FPGA Nexys A7-50T board
 
 # Team members
-- Josef Šikula (responsible for coordinating project and everything other)
+- Josef Šikula (responsible for coordinating project)
 - Ondřej Vlček (responsible for Top Level)
 - Marek Smolinský (responsible for bin2PWM block)
 
