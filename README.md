@@ -45,7 +45,7 @@ When period pulse is HIGH, resets angle2pulse component and sets pwm_out to HIGH
 
 
 # Instructions
-Our video link [here](https://www.youtube.com/)
+[Link](https://www.youtube.com/watch?v=J1Z60RwXuP0) to video demonstrating application of the project.
 
 # References
 
