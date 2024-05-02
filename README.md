@@ -45,7 +45,12 @@ When period pulse is HIGH, resets angle2pulse component and sets pwm_out to HIGH
 
 
 # Instructions
-[Link](https://www.youtube.com/watch?v=J1Z60RwXuP0) to video demonstrating application of the project.
+[Link](https://www.youtube.com/watch?v=J1Z60RwXuP0) to video demonstrating application of the project, where all necessary instructions are described.
+
+1. Wire all necessary pins as described in [`Hardware description`](#hardware-description), as a power supply in video was used an Arduino board internal power supply. 
+2. Upload [bitstream](/top_level.bit) on board.
+3. Use buttons BTNL & BTNR for controling angle of a servo and BTND & BTNU for controling another servo.
+4. TIP! Switch on SW15 and set angle of a servo on JA1 with direct binary code using switches SW0 (LSB) - SW7 (MSB)
 
 # References
 
